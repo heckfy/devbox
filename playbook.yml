@@ -36,6 +36,12 @@
         - 'nodejs'
         - 'htop'
 
+    - name: 'account | copy ssh private key'
+      copy: 'src=~/.ssh/id_rsa dest={{ home }}/.ssh/id_rsa owner={{ user }} group={{ user }} mode=0600'
+
+    - name: 'account | copy ssh public key'
+      copy: 'src=~/.ssh/id_rsa.pub dest={{ home }}/.ssh/id_rsa.pub owner={{ user }} group={{ user }} mode=0644'
+
     # Устанавливаем ruby-build, rbenv, bundler
     - name: 'rbenv | clone repo'
       git: 'repo=git://github.com/sstephenson/rbenv.git dest={{ rbenv_root }} accept_hostkey=yes'
